@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # Add routes below above line
   post 'tasks' => 'tasks#create'
   
-  delete 'task/:id' => 'tasks#destroy'
+  delete 'tasks/:id' => 'tasks#destroy'
   
   # Redirect all other paths to index page, which will be taken over by AngularJS
   get '*path' => 'homepage#index'
