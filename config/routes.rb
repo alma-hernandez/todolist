@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   # Redirect all other paths to index page, which will be taken over by AngularJS
   get '*path' => 'homepage#index'
   put '/tasks/:id/mark_complete' => 'tasks#mark_complete'
+  put 'task/:id/mark_active' => 'tasks#mark_active'
 end

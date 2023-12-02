@@ -3,17 +3,13 @@ class TasksController < ApplicationController
         @tasks = Task.all
         render 'tasks/index'
     end
-    def create
 
+    def create
         @task = Task.new(task_params)
         if @task.save
           render 'tasks/create' # can be omitted
         end
     end
-      private
-        def task_params
-          params.require(:task).permit(:content)
-        end
 
     def destroy
         @task = Task.find_by(id: params[:id])
@@ -24,14 +20,26 @@ class TasksController < ApplicationController
             render json: { success: false }
         end
      end
-        private
-
+        
     def mark_complete
         @task = Task.find_by(id: params[:id])
-        
+
         if @task and @task.update(completed: true)
-            render 'tasks/mark_complete'
+            render 'tasks/update'
         end
     end
+
+    def mark_active
+        @task = Task.find_by(id: params[:id])
+
+        if @task and @task.update(completed: false)
+            render 'tasks.update'
+        end
+    end
+
           private
+
+          def task_params
+            params.require(:task).permit(:content)
+      end
 end
