@@ -17,7 +17,7 @@ class TasksController < ApplicationController
 
     def destroy
         @task = Task.find_by(id: params[:id])
-        
+
         if @task and @task.destroy
             render json: { success: true }
         else
@@ -28,6 +28,7 @@ class TasksController < ApplicationController
 
     def mark_complete
         @task = Task.find_by(id: params[:id])
+        
         if @task and @task.update(completed: true)
             render 'tasks/mark_complete'
         end
